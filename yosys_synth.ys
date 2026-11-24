@@ -1,0 +1,8 @@
+# yosys -s asic/yosys_synth.ys   (generic sanity synth; swap in your liberty for real numbers)
+read_verilog -sv sv/mac_pipe.sv
+hierarchy -top mac_pipe
+synth -top mac_pipe -flatten
+# With a liberty file (e.g. sky130/gf180/nangate45):
+#   dfflibmap -liberty $::env(LIB)
+#   abc -liberty $::env(LIB) -D 2000     ;# 2000 ps target
+stat
